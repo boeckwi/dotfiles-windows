@@ -5,5 +5,5 @@ mklink _vimrc c:\dotfiles-windows\home\_vimrc
 ```
 
 ```cd
-cd roaming
-mklink /D StrokesPlus c:\dotfiles-windows\appdata\roaming\StrokesPlus
+cd appdata\roaming
+mklink /D StrokesPlus c:\dotfiles-windows\roaming\StrokesPlus
