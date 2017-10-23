@@ -1,0 +1,85 @@
+" CTRL-X
+vnoremap <C-X> "+x
+" CTRL-C
+vnoremap <C-C> "+y
+" CTRL-V
+map <C-V>		"+gP
+cmap <C-V>		<C-R>+
+
+" set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows
+behave mswin
+
+" backspace and cursor keys wrap to previous/next line
+set backspace=indent,eol,start whichwrap+=<,>,[,
+
+
+" Pasting blockwise and linewise selections is not possible in Insert and
+" Visual mode without the +virtualedit feature.  They are pasted as if they
+" were characterwise instead.
+" Uses the paste.vim autoload script.
+" Use CTRL-G u to have CTRL-Z only undo the paste.
+exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
+
+" Use CTRL-Q to do what CTRL-V used to do
+noremap <C-Q>		<C-V>
+
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S>		:update<CR>
+vnoremap <C-S>		<C-C>:update<CR>
+inoremap <C-S>		<C-O>:update<CR>
+
+" For CTRL-V to work autoselect must be off.
+set guioptions-=a
+
+" CTRL-A is Select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
+
+
+
+syntax on
+set encoding=utf-8
+set backup
+set dir=%TMP%
+set backupdir=%TMP%
+set directory=%TMP%
+set noundofile
+set number
+set guioptions -=m  "menu bar
+set guioptions -=T  "toolbar
+set guioptions -=r  "scrollbar
+set guioptions -=L  "left scrollbar if split"
+set incsearch
+set hlsearch
+set tabstop=4
+"set smarttab
+set smartindent
+"set cindent	
+colorscheme badwolf
+
+"SPLITS"
+nnoremap <tab> <C-w><C-w>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
+:let mapleader = "\<Space>"
+:nnoremap <leader>q :q<cr>
+:nnoremap <leader>w :w<cr>
+
+"RUBY"
+:nnoremap <leader>rt :!rspec %<cr>
+:nnoremap <leader>ra :!rake spec<cr>
+:nnoremap <leader>rs :execute "!rspec %:" . line(".")<cr>
+
+"NODE.JS"
+:nnoremap <leader>n :w<cr>:!node %<cr>
+:nnoremap <leader>m :w<cr>:!mocha %<cr>
+set cmdheight=2 " damit nach shell command kein <enter> verlangt wird
