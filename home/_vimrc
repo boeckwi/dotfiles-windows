@@ -60,7 +60,10 @@ set tabstop=4
 "set smarttab
 set smartindent
 "set cindent	
+set ignorecase
+set smartcase
 colorscheme badwolf
+
 
 "SPLITS"
 nnoremap <tab> <C-w><C-w>
@@ -75,9 +78,10 @@ nnoremap <C-l> <C-w>l
 :nnoremap <leader>w :w<cr>
 
 "RUBY"
-:nnoremap <leader>rt :!rspec %<cr>
-:nnoremap <leader>ra :!rake spec<cr>
-:nnoremap <leader>rs :execute "!rspec %:" . line(".")<cr>
+:nnoremap <leader>rt :w<cr>:!rspec %<cr>
+:nnoremap <leader>ru :w<cr>:!ruby %<cr>
+:nnoremap <leader>ra :w<cr>:!rake spec<cr>
+:nnoremap <leader>rs :w<cr>:execute "!rspec %:" . line(".")<cr>
 
 "NODE.JS"
 :nnoremap <leader>n :w<cr>:!node %<cr>
