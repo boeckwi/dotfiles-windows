@@ -1,3 +1,19 @@
+set nocompatible " VI Kompatibilität brauchen wir nicht -> VIM ftw
+
+
+" filetype off " for vundle
+" set rtp+=~/vimfiles/bundle/Vundle.vim " set the runtime path to invlude Vundle and initialize
+" call vundle#rc()
+" 
+" " let Vundle manage VUndle, required
+" Plugin 'VundleVim/Vundle.vim'
+" 
+" filetype plugin indent on
+" 
+
+
+
+
 " CTRL-X
 vnoremap <C-X> "+x
 " CTRL-C
@@ -8,9 +24,11 @@ cmap <C-V>		<C-R>+
 
 " set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows
 behave mswin
+" every copy and paste will interact with system clipboard
+set clipboard=unnamed
 
 " backspace and cursor keys wrap to previous/next line
-set backspace=indent,eol,start whichwrap+=<,>,[,
+set backspace=indent,eol,start
 
 
 " Pasting blockwise and linewise selections is not possible in Insert and
@@ -41,27 +59,36 @@ snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
 
 
-
-syntax on
+syntax enable
 set encoding=utf-8
 set backup
+set updatecount=0 " disable swap files; systems don't crash that often these days
 set dir=%TMP%
 set backupdir=%TMP%
 set directory=%TMP%
 set noundofile
 set number
+set relativenumber
+set ruler
 set guioptions -=m  "menu bar
 set guioptions -=T  "toolbar
 set guioptions -=r  "scrollbar
 set guioptions -=L  "left scrollbar if split"
 set incsearch
 set hlsearch
-set tabstop=4
+set tabstop=2 " a tab is two spaces
+set shiftwidth=2 " an autoindent (with <<) is two spaces
+set expandtab " use spaces, not tabs
 "set smarttab
 set smartindent
 "set cindent	
 set ignorecase
 set smartcase
+set gdefault " have :s///g flag by default on
+set cuc cul
+set showcmd
+
+
 colorscheme badwolf
 
 
@@ -74,20 +101,22 @@ nnoremap <C-l> <C-w>l
 
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
 
-:let mapleader = "\<Space>"
-:nnoremap <leader>q :q<cr>
-:nnoremap <leader>w :w<cr>
+let mapleader = "\<Space>"
+nnoremap <leader>q :q<cr>
+nnoremap <leader>w :w<cr>
+nmap <leader><CR> :nohlsearch<cr>
+
 
 "RUBY"
-:nnoremap <leader>rt :w<cr>:!rspec %<cr>
-:nnoremap <leader>ru :w<cr>:!ruby %<cr>
-:nnoremap <leader>ra :w<cr>:!rake spec<cr>
-:nnoremap <leader>rs :w<cr>:execute "!rspec %:" . line(".")<cr>
+nnoremap <leader>rt :w<cr>:!rspec %<cr>
+nnoremap <leader>ru :w<cr>:!ruby %<cr>
+nnoremap <leader>ra :w<cr>:!rake spec<cr>
+nnoremap <leader>rs :w<cr>:execute "!rspec %:" . line(".")<cr>
 
 "NODE.JS"
-:nnoremap <leader>n :w<cr>:!node %<cr>
-:nnoremap <leader>m :w<cr>:!mocha %<cr>
+nnoremap <leader>n :w<cr>:!node %<cr>
+nnoremap <leader>m :w<cr>:!mocha %<cr>
 
 "PYTHON"
-:nnoremap <leader>p :w<cr>:!python %<cr>
+nnoremap <leader>p :w<cr>:!python %<cr>
 
