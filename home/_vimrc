@@ -1,3 +1,11 @@
+" Hilfe:
+" ------
+" <C-w>o  " close other windows
+" <C-j>   " move to left windows
+" gcc     " comment current line
+
+
+
 set nocompatible " VI Kompatibilität brauchen wir nicht -> VIM ftw
 
 
@@ -7,9 +15,18 @@ call vundle#rc('$HOME/vimfiles/bundle/')
  
 " let Vundle manage VUndle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'AndrewRadev/switch.vim'
-
- 
+Plugin 'AndrewRadev/switch.vim' " press <leader>s to toggle true/false
+Plugin 'tpope/vim-fugitive'  " execute :Gstatus while in added file
+Plugin 'tomtom/tcomment_vim' " press <g><c><c> to comment current line
+" Plugin 'vim-ruby/vim-ruby'   " https://github.com/vim-ruby/vim-ruby/blob/master/doc/vim-ruby.txt
+Plugin 'jiangmiao/auto-pairs' " Autogenerates pairs for {[(
+Plugin 'ervandew/supertab'    " Tab completion
+Plugin 'kien/ctrlp.vim'       " ctrl+p  fuzzy search for files in project
+Plugin 'janko-m/vim-test'     " test runner for everything: <leader>t
+Plugin 'scrooloose/nerdtree'  " <leader>f
+Plugin 'bling/vim-airline'    " bessere status bar
+Plugin 'tpope/vim-endwise'    " automatisches end bei ruby
+" Plugin 'thoughtbot/vim-rspec' " rspec test per :call RunAllSpecs()
 filetype plugin indent on
  
 
@@ -61,7 +78,10 @@ snoremap <C-A> <C-C>gggH<C-O>G
 xnoremap <C-A> <C-C>ggVG
 
 
-syntax enable
+if !exists("g:syntax_on")
+  syntax enable
+endif
+
 set encoding=utf-8
 set backup
 set updatecount=0 " disable swap files; systems don't crash that often these days
@@ -81,48 +101,57 @@ set hlsearch
 set tabstop=2 " a tab is two spaces
 set shiftwidth=2 " an autoindent (with <<) is two spaces
 set expandtab " use spaces, not tabs
-"set smarttab
 set smartindent
-"set cindent	
 set ignorecase
 set smartcase
 set gdefault " have :s///g flag by default on
 set cuc cul
 set showcmd
-
+set laststatus=2
 
 colorscheme badwolf
+set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
+let mapleader = "\<Space>"
 
 
 "SPLITS"
 nnoremap <tab> <C-w><C-w>
+nnoremap <S-tab> <C-w>p
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
+"BUFFERS"
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>d :bd<CR>
 
-let mapleader = "\<Space>"
 nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
 nmap <leader><CR> :nohlsearch<cr>
 
 
 "RUBY"
-nnoremap <leader>rt :w<cr>:!rspec %<cr>
 nnoremap <leader>ru :w<cr>:!ruby %<cr>
-nnoremap <leader>ra :w<cr>:!rake spec<cr>
-nnoremap <leader>rs :w<cr>:execute "!rspec %:" . line(".")<cr>
 
 "NODE.JS"
-nnoremap <leader>n :w<cr>:!node %<cr>
-nnoremap <leader>m :w<cr>:!mocha %<cr>
+nnoremap <leader>N :w<cr>:!node %<cr>
+" nnoremap <leader>m :w<cr>:!mocha %<cr>
 
 "PYTHON"
-nnoremap <leader>p :w<cr>:!python %<cr>
+nnoremap <leader>P :w<cr>:!python %<cr>
 
+"Plugin: Switch"
+nnoremap <leader>s :Switch<cr>
 
-"Bundle: Switch"
-nnoremap <leader>t :Switch<cr>
+"Plugin: vim-test"
+nnoremap <silent> <leader>t :TestNearest<CR>
+nnoremap <silent> <leader>T :TestFile<CR>
+nnoremap <silent> <leader>a :TestSuite<CR>
+nnoremap <silent> <leader>l :TestLast<CR>
+let test#ruby#rspec#executable = 'rspec'
+" let test#strategy = 'makegreen'
 
+"Plugin: nerdtree"
+nnoremap <leader>f :NERDTree<CR>
