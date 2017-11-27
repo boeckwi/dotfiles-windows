@@ -1,15 +1,17 @@
 set nocompatible " VI Kompatibilität brauchen wir nicht -> VIM ftw
 
 
-" filetype off " for vundle
-" set rtp+=~/vimfiles/bundle/Vundle.vim " set the runtime path to invlude Vundle and initialize
-" call vundle#rc()
-" 
-" " let Vundle manage VUndle, required
-" Plugin 'VundleVim/Vundle.vim'
-" 
-" filetype plugin indent on
-" 
+filetype off " for vundle
+set rtp+=~/vimfiles/bundle/Vundle.vim " set the runtime path to invlude Vundle and initialize
+call vundle#rc('$HOME/vimfiles/bundle/')
+ 
+" let Vundle manage VUndle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'AndrewRadev/switch.vim'
+
+ 
+filetype plugin indent on
+ 
 
 
 
@@ -119,4 +121,8 @@ nnoremap <leader>m :w<cr>:!mocha %<cr>
 
 "PYTHON"
 nnoremap <leader>p :w<cr>:!python %<cr>
+
+
+"Bundle: Switch"
+nnoremap <leader>t :Switch<cr>
 
