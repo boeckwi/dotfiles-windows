@@ -25,7 +25,7 @@ Plugin 'scrooloose/nerdtree'  " <leader>f
 Plugin 'bling/vim-airline'    " bessere status bar
 Plugin 'tpope/vim-endwise'    " automatisches end bei ruby
 " Plugin 'thoughtbot/vim-rspec' " rspec test per :call RunAllSpecs()
-Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-dispatch'   " bessere test ausgabe
 filetype plugin indent on
 
 
@@ -104,6 +104,7 @@ set gdefault " have :s///g flag by default on
 set cuc cul
 set showcmd
 set laststatus=2
+set lines=50 columns=140
 
 colorscheme badwolf
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
@@ -117,6 +118,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+"NUMBERS"
+nnoremap <A-a> <C-a>
+nnoremap <A-x> <C-x>
 
 "BUFFERS"
 nnoremap <leader>p :bp<CR>
@@ -146,18 +151,15 @@ nnoremap <silent> <leader>t :TestNearest<CR>
 nnoremap <silent> <leader>T :TestFile<CR>
 nnoremap <silent> <leader>a :TestSuite<CR>
 nnoremap <silent> <leader>l :TestLast<CR>
-let test#ruby#rspec#executable = 'rspec'
+" let test#ruby#rspec#executable = 'rspec'
+let test#strategy = 'dispatch'
+let test#ruby#bundle_exec = 1
+let test#ruby#use_binstubs = 0
 let test#ruby#rspec#options = {
   \ 'file':    '--color', 
   \ 'nearest': '--color', 
   \ 'suite':   '--color', 
 \}
-
-" function! MyDispatch(cmd)
-"   :Dispatch bundle exec rspec %
-" endfunction
-" let g:test#custom_strategies = {'my_dispatch': function('MyDispatch')}
-" let g:test#strategy = 'my_dispatch'
 
 
 "Plugin: nerdtree"
