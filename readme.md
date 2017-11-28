@@ -15,3 +15,8 @@ mklink /D StrokesPlus c:\dotfiles-windows\roaming\StrokesPlus
 cd %USERPROFILE%
 git clone https://github.com/VundleVim/Vundle.vim.git vimfiles/bundle/Vundle.vim
 ```
+
+```
+:bundleinstall
+```
+
