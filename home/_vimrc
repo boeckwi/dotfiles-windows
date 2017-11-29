@@ -26,6 +26,7 @@ Plugin 'bling/vim-airline'    " bessere status bar
 Plugin 'tpope/vim-endwise'    " automatisches end bei ruby
 " Plugin 'thoughtbot/vim-rspec' " rspec test per :call RunAllSpecs()
 Plugin 'tpope/vim-dispatch'   " bessere test ausgabe
+Plugin 'gabrielelana/vim-markdown'
 filetype plugin indent on
 
 
@@ -164,3 +165,7 @@ let test#ruby#rspec#options = {
 
 "Plugin: nerdtree"
 nnoremap <leader>f :NERDTree<CR>
+
+
+"Plugin: markdown"
+let g:markdown_enable_spell_checking = 0
