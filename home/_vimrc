@@ -107,6 +107,10 @@ set showcmd
 set laststatus=2
 set lines=50 columns=140
 
+
+
+" set guifont=Source_Code_Pro:h9:cANSI:qDRAFT
+
 colorscheme badwolf
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
 let mapleader = "\<Space>"
@@ -169,3 +173,7 @@ nnoremap <leader>f :NERDTree<CR>
 
 "Plugin: markdown"
 let g:markdown_enable_spell_checking = 0
+
+
+
+
