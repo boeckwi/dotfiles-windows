@@ -6,14 +6,15 @@
     "python.linting.pylintArgs": [
         "--errors-only"
     ],
-    // "vim.useCtrlKeys": false,
+    "vim.useCtrlKeys": true,
     "vim.handleKeys": {
         "<C-f>": false,
         "<C-a>": false,
         "<C-k>": false,
         "<C-j>": false,
         "<C-v>": false,
-        "<C-b>": false
+        "<C-b>": false,
+        "<C-w>": false
     },
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useSystemClipboard": true,
