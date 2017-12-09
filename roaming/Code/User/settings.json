@@ -11,7 +11,8 @@
         "<C-f>": false,
         "<C-a>": false,
         "<C-k>": false,
-        "<C-j>": false
+        "<C-j>": false,
+        "<C-v>": false
     },
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useSystemClipboard": true,
