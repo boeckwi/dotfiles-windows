@@ -169,6 +169,7 @@ let test#ruby#rspec#options = {
 
 "Plugin: nerdtree"
 nnoremap <leader>f :NERDTree<CR>
+let NERDTreeQuitOnOpen=1
 
 
 "Plugin: markdown"

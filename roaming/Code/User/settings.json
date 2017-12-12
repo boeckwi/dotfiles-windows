@@ -72,5 +72,6 @@
         "statusBar.noFolderBackground": "#005f5f",
         "statusBar.debuggingBackground": "#005f5f"
     },
-    "window.menuBarVisibility": "default"
+    "window.menuBarVisibility": "default",
+    "editor.minimap.enabled": false
 }
