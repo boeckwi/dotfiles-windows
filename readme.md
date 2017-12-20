@@ -24,3 +24,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git vimfiles/bundle/Vundle.vim
 :bundleinstall
 ```
 
+
+## Spacemacs
+cd %userprofile%
+mklink .spacemacs c:\dotfiles-windows\home\.spacemacs
+
