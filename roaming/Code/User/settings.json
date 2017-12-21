@@ -1,7 +1,8 @@
 // Platzieren Sie Ihre Einstellungen in dieser Datei, um die Standardeinstellungen zu überschreiben.
 {
+    "editor.tabSize": 2,
     "window.zoomLevel": 0,
-    "editor.lineNumbers": "off",
+    "editor.lineNumbers": "on",
     "powershell.integratedConsole.focusConsoleOnExecute": false,
     "python.linting.pylintArgs": [
         "--errors-only"
@@ -16,7 +17,6 @@
         "<C-b>": false,
         "<C-w>": false
     },
-    "vim.disableAnnoyingNeovimMessage": true,
     "vim.useSystemClipboard": true,
     "vim.hlsearch": true,
     "vim.substituteGlobalFlag": true,
@@ -73,5 +73,6 @@
         "statusBar.debuggingBackground": "#005f5f"
     },
     "window.menuBarVisibility": "default",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "workbench.colorTheme": "Monokai"
 }

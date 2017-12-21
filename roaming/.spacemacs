@@ -40,7 +40,7 @@ values."
      ;; ivy
      ;; auto-completion
      git
-     ;; syntax-checking
+     syntax-checking
      version-control
      html
      (ruby :variables
