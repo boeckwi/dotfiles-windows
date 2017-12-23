@@ -146,18 +146,6 @@ nnoremap <leader>P :w<cr>:!python %<cr>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 "RUBY"
 nnoremap <leader>ru :w<cr>:!ruby %<cr>
 
@@ -166,7 +154,6 @@ nnoremap <leader>ru :w<cr>:!ruby %<cr>
 "===============================================================================
 " RUBY SPECS
 "===============================================================================
-
 function! RunTests(filename)
   " Write the file and run tests for the given filename
   :silent w
@@ -207,8 +194,6 @@ endfunction
 " run test runner
 map <leader>t :call RunTestFile()<cr>
 map <leader>T :call RunNearestTest()<cr>
-
-
 "===============================================================================
 " END SPECS
 "===============================================================================
