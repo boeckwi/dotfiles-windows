@@ -1,6 +1,6 @@
 " try
 " gcip         comment in paragraph
-" ctrl+p       fuzzy search in project
+" ctrl+p       quick open file in project (fuzzy search)
 " <leader>t    run spec
 " <leader>pry  break point
 " <leader>gw   push
@@ -18,11 +18,9 @@ call vundle#rc('$HOME/vimfiles/bundle/')
 Plugin 'VundleVim/Vundle.vim'   " let Vundle manage VUndle, required
 Plugin 'AndrewRadev/switch.vim' " <leader>s to toggle true/false
 Plugin 'tpope/vim-fugitive'     " git :Gstatus
-" Plugin 'tomtom/tcomment_vim'    " press <g c c> to comment current line
 Plugin 'tpope/vim-commentary'   " press <g c c> to comment current line
-" Plugin 'vim-ruby/vim-ruby'    " hatte wohl nicht gefunzt....testen mit: 'hallo'.<C-x><C-o>
+" Plugin 'vim-ruby/vim-ruby'      " geht wohl nur wenn vim mit ruby funktionality compiliert wurde, testen mit: 'hallo'.<C-x><C-o>
 Plugin 'jiangmiao/auto-pairs'   " Autogenerates pairs for {[(
-" Plugin 'ervandew/supertab'    " Tab completion (mehrwert zu <C-n> ?)
 Plugin 'kien/ctrlp.vim'         " ctrl+p  fuzzy search for files in project
 Plugin 'scrooloose/nerdtree'    " <leader>f
 Plugin 'bling/vim-airline'      " bessere status bar und :help airline-tabline
