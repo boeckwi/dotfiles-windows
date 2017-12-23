@@ -1,19 +1,16 @@
-// Platzieren Sie Ihre Einstellungen in dieser Datei, um die Standardeinstellungen zu überschreiben.
 {
     "editor.tabSize": 2,
     "window.zoomLevel": 0,
     "editor.lineNumbers": "on",
-    "powershell.integratedConsole.focusConsoleOnExecute": false,
-    "python.linting.pylintArgs": [
-        "--errors-only"
-    ],
     "vim.useCtrlKeys": true,
     "vim.handleKeys": {
         "<C-f>": false,
-        "<C-a>": false,
         "<C-k>": false,
         "<C-j>": false,
+        "<C-a>": false,
         "<C-v>": false,
+        "<C-c>": false,
+        "<C-x>": false,
         "<C-b>": false,
         "<C-w>": false
     },
