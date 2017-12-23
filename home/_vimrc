@@ -144,7 +144,8 @@ nnoremap <leader>P :w<cr>:!python %<cr>
 
 
 
-
+"GIT"
+nnoremap <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 
 "RUBY"
 nnoremap <leader>ru :w<cr>:!ruby %<cr>
