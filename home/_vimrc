@@ -3,7 +3,6 @@
 " ctrl+p     fuzzy search in project
 " <leader>t  run spec
 
-set nocompatible " VI Kompatibilität brauchen wir nicht
 let mapleader = "\<Space>"
 
 "===============================================================================
@@ -74,6 +73,10 @@ set lines=50 columns=140
 if !exists("g:syntax_on")
   syntax enable
 endif
+set colorcolumn=80
+set wildmenu " enable tab completion in command mode
+set wildmode=list:longest,full
+set nocompatible " VI Kompatibilität brauchen wir nicht
 
 colorscheme base16-ocean
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
@@ -166,8 +169,7 @@ nnoremap <leader>ru :w<cr>:!ruby %<cr>
 
 function! RunTests(filename)
   " Write the file and run tests for the given filename
-  :w
-  :silent !clear
+  :silent w
   if filereadable("Gemfile")
     exec ":!bundle exec rspec --color " . a:filename
   else
