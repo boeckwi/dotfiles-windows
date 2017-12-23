@@ -148,6 +148,7 @@ nnoremap <leader>P :w<cr>:!python %<cr>
 
 "RUBY"
 nnoremap <leader>ru :w<cr>:!ruby %<cr>
+nnoremap <leader>pry orequire 'pry'; binding.pry<esc>
 
 
 
