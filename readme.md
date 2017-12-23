@@ -13,7 +13,6 @@ cd %appdata%
 mklink /D StrokesPlus c:\dotfiles-windows\roaming\StrokesPlus
 ```
 
-
 ## Vundle
 ```
 cd %USERPROFILE%

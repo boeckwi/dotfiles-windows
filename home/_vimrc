@@ -1,83 +1,43 @@
-" Hilfe: " ------ " <C-w>o  " close other windows
-" <C-j>   " move to left windows
-" gcc     " comment current line
+" try
+" gcip     comment in paragraph
+" ctrl+p   fuzzy search in project
 
+set nocompatible " VI Kompatibilität brauchen wir nicht
+let mapleader = "\<Space>"
 
-
-set nocompatible " VI Kompatibilität brauchen wir nicht -> VIM ftw
-
-
+"===============================================================================
+" VUNDLE PLUGINS
+"===============================================================================
 filetype off " for vundle
 set rtp+=~/vimfiles/bundle/Vundle.vim " set the runtime path to invlude Vundle and initialize
 call vundle#rc('$HOME/vimfiles/bundle/')
  
-" let Vundle manage VUndle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'AndrewRadev/switch.vim' " press <leader>s to toggle true/false
-Plugin 'tpope/vim-fugitive'  " execute :Gstatus while in added file
-Plugin 'tomtom/tcomment_vim' " press <g><c><c> to comment current line
-" Plugin 'vim-ruby/vim-ruby'   " testen mit: 'hallo'.<C-x><C-o>
-Plugin 'jiangmiao/auto-pairs' " Autogenerates pairs for {[(
-Plugin 'ervandew/supertab'    " Tab completion
-Plugin 'kien/ctrlp.vim'       " ctrl+p  fuzzy search for files in project
-Plugin 'janko-m/vim-test'     " test runner for everything: <leader>t
-Plugin 'scrooloose/nerdtree'  " <leader>f
-Plugin 'bling/vim-airline'    " bessere status bar
-Plugin 'tpope/vim-endwise'    " automatisches end bei ruby
-" Plugin 'thoughtbot/vim-rspec' " rspec test per :call RunAllSpecs()
-Plugin 'tpope/vim-dispatch'   " bessere test ausgabe
+Plugin 'VundleVim/Vundle.vim'   " let Vundle manage VUndle, required
+Plugin 'AndrewRadev/switch.vim' " <leader>s to toggle true/false
+Plugin 'tpope/vim-fugitive'     " git :Gstatus
+Plugin 'tomtom/tcomment_vim'    " press <g c c> to comment current line
+" Plugin 'vim-ruby/vim-ruby'    " hatte wohl nicht gefunzt....testen mit: 'hallo'.<C-x><C-o>
+Plugin 'jiangmiao/auto-pairs'   " Autogenerates pairs for {[(
+" Plugin 'ervandew/supertab'    " Tab completion (mehrwert zu <C-n> ?)
+Plugin 'kien/ctrlp.vim'         " ctrl+p  fuzzy search for files in project
+Plugin 'scrooloose/nerdtree'    " <leader>f
+Plugin 'bling/vim-airline'      " bessere status bar
+Plugin 'tpope/vim-endwise'      " automatisches end bei ruby
 Plugin 'gabrielelana/vim-markdown'
 filetype plugin indent on
 
+"Plugin: switch"
+nnoremap <leader>s :Switch<cr>
 
-" CTRL-X
-vnoremap <C-X> "+x
-" CTRL-C
-vnoremap <C-C> "+y
-" CTRL-V
-map <C-V>		"+gP
-cmap <C-V>		<C-R>+
+"Plugin: nerdtree"
+nnoremap <leader>f :NERDTree<CR>
+let NERDTreeQuitOnOpen=1
 
-" set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows
-behave mswin
-" every copy and paste will interact with system clipboard
-set clipboard=unnamed
-
-" backspace and cursor keys wrap to previous/next line
-set backspace=indent,eol,start
-
-
-" Pasting blockwise and linewise selections is not possible in Insert and
-" Visual mode without the +virtualedit feature.  They are pasted as if they
-" were characterwise instead.
-" Uses the paste.vim autoload script.
-" Use CTRL-G u to have CTRL-Z only undo the paste.
-exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
-
-" Use CTRL-Q to do what CTRL-V used to do
-noremap <C-Q>		<C-V>
-
-" Use CTRL-S for saving, also in Insert mode
-noremap <C-S>		:update<CR>
-vnoremap <C-S>		<C-C>:update<CR>
-inoremap <C-S>		<C-O>:update<CR>
-
-" For CTRL-V to work autoselect must be off.
-set guioptions-=a
-
-" CTRL-A is Select all
-noremap <C-A> gggH<C-O>G
-inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-A> <C-C>gggH<C-O>G
-onoremap <C-A> <C-C>gggH<C-O>G
-snoremap <C-A> <C-C>gggH<C-O>G
-xnoremap <C-A> <C-C>ggVG
-
-
-if !exists("g:syntax_on")
-  syntax enable
-endif
+"Plugin: markdown"
+let g:markdown_enable_spell_checking = 0
+"-------------------------------------------------------------------------------
+" END VUNDLE PLUGINS
+"-------------------------------------------------------------------------------
 
 set encoding=utf-8
 set backup
@@ -106,19 +66,47 @@ set cuc cul
 set showcmd
 set laststatus=2
 set lines=50 columns=140
-
-
-
-" set guifont=Source_Code_Pro:h9:cANSI:qDRAFT
+if !exists("g:syntax_on")
+  syntax enable
+endif
 
 colorscheme badwolf
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
-let mapleader = "\<Space>"
 
+" C-V in insert mode
+exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
+
+" CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+" CTRL-X/C/V
+vnoremap <C-X> "+x
+vnoremap <C-C> "+y
+map <C-V>	"+gP
+cmap <C-V> <C-R>+
+set guioptions-=a " For CTRL-V to work autoselect must be off.
+
+" CTRL-Q to do what CTRL-V used to do
+noremap <C-Q>		<C-V>
+
+" MISC
+behave mswin " Windows stuff - set 'selection', 'selectmode', 'mousemodel' and 'keymodel'
+set clipboard=unnamed " use system clipoard
+set backspace=indent,eol,start " backspace and cursor keys wrap to previous/next line
+nmap <leader><CR> :nohlsearch<cr> " remove search highlights
+
+" CTRL-A is Select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
 
 "SPLITS"
-nnoremap <tab> <C-w><C-w>
-nnoremap <S-tab> <C-w>p
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -132,11 +120,8 @@ nnoremap <A-x> <C-x>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>d :bd<CR>
-
 nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
-nmap <leader><CR> :nohlsearch<cr>
-
 
 "RUBY"
 nnoremap <leader>ru :w<cr>:!ruby %<cr>
@@ -147,34 +132,4 @@ nnoremap <leader>N :w<cr>:!node %<cr>
 
 "PYTHON"
 nnoremap <leader>P :w<cr>:!python %<cr>
-
-"Plugin: Switch"
-nnoremap <leader>s :Switch<cr>
-
-"Plugin: vim-test"
-nnoremap <silent> <leader>t :TestNearest<CR>
-nnoremap <silent> <leader>T :TestFile<CR>
-nnoremap <silent> <leader>a :TestSuite<CR>
-nnoremap <silent> <leader>l :TestLast<CR>
-" let test#ruby#rspec#executable = 'rspec'
-let test#strategy = 'dispatch'
-let test#ruby#bundle_exec = 1
-let test#ruby#use_binstubs = 0
-let test#ruby#rspec#options = {
-  \ 'file':    '--color', 
-  \ 'nearest': '--color', 
-  \ 'suite':   '--color', 
-\}
-
-
-"Plugin: nerdtree"
-nnoremap <leader>f :NERDTree<CR>
-let NERDTreeQuitOnOpen=1
-
-
-"Plugin: markdown"
-let g:markdown_enable_spell_checking = 0
-
-
-
 
