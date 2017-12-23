@@ -4,6 +4,7 @@
 " <leader>t    run spec
 " <leader>pry  break point
 " <leader>gw   push
+" <leader>ren  rename file
 
 let mapleader = "\<Space>"
 
@@ -27,6 +28,7 @@ Plugin 'scrooloose/nerdtree'    " <leader>f
 Plugin 'bling/vim-airline'      " bessere status bar und :help airline-tabline
 Plugin 'tpope/vim-endwise'      " automatisches end bei ruby
 Plugin 'gabrielelana/vim-markdown'
+Plugin 'tpope/vim-dispatch'     " test ausgabe im quickfix fenster
 filetype plugin indent on
 
 "Plugin: switch"
@@ -108,7 +110,7 @@ noremap <C-Q>		<C-V>
 behave mswin " Windows stuff - set 'selection', 'selectmode', 'mousemodel' and 'keymodel'
 set clipboard=unnamed " use system clipoard
 set backspace=indent,eol,start " backspace and cursor keys wrap to previous/next line
-nmap <leader><CR> :nohlsearch<cr> " remove search highlights
+nmap <leader><CR> :nohlsearch<cr>:ccl<cr>" remove search highlights and close quickfix window
 
 " CTRL-A is Select all
 noremap <C-A> gggH<C-O>G
@@ -164,9 +166,9 @@ function! RunTests(filename)
   " Write the file and run tests for the given filename
   :silent w
   if filereadable("Gemfile")
-    exec ":!bundle exec rspec --color " . a:filename
+    exec ":Dispatch bundle exec rspec --color " . a:filename
   else
-    exec ":!rspec --color " . a:filename
+    exec ":Dispatch rspec --color " . a:filename
   end
 endfunction
 
