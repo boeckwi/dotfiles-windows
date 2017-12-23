@@ -1,7 +1,9 @@
 " try
-" gcip       comment in paragraph
-" ctrl+p     fuzzy search in project
-" <leader>t  run spec
+" gcip         comment in paragraph
+" ctrl+p       fuzzy search in project
+" <leader>t    run spec
+" <leader>pry  break point
+" <leader>gw   push
 
 let mapleader = "\<Space>"
 
@@ -77,6 +79,8 @@ set colorcolumn=80
 set wildmenu " enable tab completion in command mode
 set wildmode=list:longest,full
 set nocompatible " VI Kompatibilität brauchen wir nicht
+set list listchars=tab:»·,trail:· " Display extra whitespace
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Don't automatically continue comments after newline
 
 colorscheme base16-ocean
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
@@ -199,3 +203,19 @@ map <leader>T :call RunNearestTest()<cr>
 "===============================================================================
 " END SPECS
 "===============================================================================
+ 
+ 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE (thanks Gary Bernhardt)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <Leader>ren :call RenameFile()<cr>
+
