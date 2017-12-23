@@ -1,6 +1,7 @@
 " try
-" gcip     comment in paragraph
-" ctrl+p   fuzzy search in project
+" gcip       comment in paragraph
+" ctrl+p     fuzzy search in project
+" <leader>t  run spec
 
 set nocompatible " VI Kompatibilität brauchen wir nicht
 let mapleader = "\<Space>"
@@ -74,7 +75,7 @@ if !exists("g:syntax_on")
   syntax enable
 endif
 
-colorscheme badwolf
+colorscheme base16-ocean
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
 
 " C-V in insert mode
@@ -127,8 +128,7 @@ nnoremap <leader>d :bd<CR>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
 
-"RUBY"
-nnoremap <leader>ru :w<cr>:!ruby %<cr>
+
 
 "NODE.JS"
 nnoremap <leader>N :w<cr>:!node %<cr>
@@ -137,3 +137,76 @@ nnoremap <leader>N :w<cr>:!node %<cr>
 "PYTHON"
 nnoremap <leader>P :w<cr>:!python %<cr>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"RUBY"
+nnoremap <leader>ru :w<cr>:!ruby %<cr>
+
+
+
+"===============================================================================
+" RUBY SPECS
+"===============================================================================
+
+function! RunTests(filename)
+  " Write the file and run tests for the given filename
+  :w
+  :silent !clear
+  if filereadable("Gemfile")
+    exec ":!bundle exec rspec --color " . a:filename
+  else
+    exec ":!rspec --color " . a:filename
+  end
+endfunction
+
+function! SetTestFile()
+  " set the spec file that tests will be run for.
+  let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+  if a:0
+    let command_suffix = a:1
+  else
+    let command_suffix = ""
+  endif
+
+  " run the tests for the previously-marked file.
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+  if in_test_file
+    call SetTestFile()
+  elseif !exists("t:grb_test_file")
+    return
+  end
+  call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+  let spec_line_number = line('.')
+  call RunTestFile(":" . spec_line_number . " -b")
+endfunction
+
+" run test runner
+map <leader>t :call RunTestFile()<cr>
+map <leader>T :call RunNearestTest()<cr>
+
+
+"===============================================================================
+" END SPECS
+"===============================================================================
