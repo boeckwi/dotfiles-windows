@@ -1,5 +1,4 @@
 " try
-
 " gcip         comment in paragraph
 " ctrl+p       quick open file in project (fuzzy search)
 " <leader>t    run spec
@@ -7,10 +6,10 @@
 " <leader>gw   push
 " <leader>ren  rename file
 
-let mapleader = "\<Space>"
+let mapleader = "\<space>"
 
 "===============================================================================
-" VUNDLE PLUGINS
+" vundle plugins
 "===============================================================================
 filetype off " for vundle
 set rtp+=~/vimfiles/bundle/Vundle.vim " set the runtime path to invlude Vundle and initialize
@@ -48,10 +47,15 @@ let g:airline#extensions#tabline#enabled = 1
 
 set encoding=utf-8
 if has("win32")
+  behave mswin " Windows stuff - set 'selection', 'selectmode', 'mousemodel' and 'keymodel'
   set backup
   set backupdir=%TMP%
   set directory=%TMP%
+
+  " looks ugly in wsl:
   colorscheme base16-ocean
+  set cuc cul " highlight cursor column and line
+  set colorcolumn=80
 else
   set backup
   set backupdir=~/.tmp
@@ -70,6 +74,8 @@ if has("gui_running")
   set guioptions -=T  "toolbar
   set guioptions -=r  "scrollbar
   set guioptions -=L  "left scrollbar if split"
+  set lines=50
+  set columns=140
 endif
 set incsearch
 set hlsearch
@@ -80,20 +86,16 @@ set smartindent
 set ignorecase
 set smartcase
 set gdefault " have :s///g flag by default on
-set cuc cul
 set showcmd
 set laststatus=2
-set lines=50 columns=140
 if !exists("g:syntax_on")
   syntax enable
 endif
-set colorcolumn=80
 set wildmenu " enable tab completion in command mode
 set wildmode=list:longest,full
 set nocompatible " VI Kompatibilität brauchen wir nicht
 set list listchars=tab:»·,trail:· " Display extra whitespace
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Don't automatically continue comments after newline
-
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
 
 " C-V in insert mode
@@ -116,7 +118,6 @@ set guioptions-=a " For CTRL-V to work autoselect must be off.
 noremap <C-Q>		<C-V>
 
 " MISC
-behave mswin " Windows stuff - set 'selection', 'selectmode', 'mousemodel' and 'keymodel'
 set clipboard=unnamed " use system clipoard
 set backspace=indent,eol,start " backspace and cursor keys wrap to previous/next line
 nmap <leader><CR> :nohlsearch<cr>:ccl<cr>" remove search highlights and close quickfix window
@@ -211,16 +212,14 @@ endfunction
 " run test runner
 map <leader>t :call RunTestFile()<cr>
 map <leader>T :call RunNearestTest()<cr>
-
-
 "===============================================================================
 " END RUBY SPECS
 "===============================================================================
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"===============================================================================
 " RENAME CURRENT FILE (thanks Gary Bernhardt)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"===============================================================================
 function! RenameFile()
   let old_name = expand('%')
   let new_name = input('New file name: ', expand('%'), 'file')
@@ -231,8 +230,3 @@ function! RenameFile()
   endif
 endfunction
 map <Leader>ren :call RenameFile()<cr>
-
-
-
-
-
