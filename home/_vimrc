@@ -26,7 +26,6 @@ Plugin 'scrooloose/nerdtree'    " <leader>f
 Plugin 'bling/vim-airline'      " bessere status bar und :help airline-tabline
 Plugin 'tpope/vim-endwise'      " automatisches end bei ruby
 Plugin 'gabrielelana/vim-markdown'
-Plugin 'tpope/vim-dispatch'     " test ausgabe im quickfix fenster
 filetype plugin indent on
 
 "Plugin: switch"
@@ -175,10 +174,13 @@ nnoremap <leader>pry orequire 'pry'; binding.pry<esc>
 function! RunTests(filename)
   " Write the file and run tests for the given filename
   :silent w
+  if has("unix")
+    exec ":silent !clear"
+  endif
   if filereadable("Gemfile")
-    exec ":Dispatch bundle exec rspec --color " . a:filename
+    exec ":!bundle exec rspec --color " . a:filename
   else
-    exec ":Dispatch rspec --color " . a:filename
+    exec ":!rspec --color " . a:filename
   end
 endfunction
 
