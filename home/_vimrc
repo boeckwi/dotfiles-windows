@@ -14,7 +14,7 @@ let mapleader = "\<Space>"
 filetype off " for vundle
 set rtp+=~/vimfiles/bundle/Vundle.vim " set the runtime path to invlude Vundle and initialize
 call vundle#rc('$HOME/vimfiles/bundle/')
- 
+
 Plugin 'VundleVim/Vundle.vim'   " let Vundle manage VUndle, required
 Plugin 'AndrewRadev/switch.vim' " <leader>s to toggle true/false
 Plugin 'tpope/vim-fugitive'     " git :Gstatus
@@ -83,6 +83,7 @@ set list listchars=tab:»·,trail:· " Display extra whitespace
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Don't automatically continue comments after newline
 
 colorscheme base16-ocean
+set guifont=ubuntu\ mono:h12
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
 
 " C-V in insert mode
@@ -152,7 +153,7 @@ nnoremap <leader>P :w<cr>:!python %<cr>
 nnoremap <leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
 
 "RUBY"
-nnoremap <leader>ru :w<cr>:!ruby %<cr>
+nnoremap <leader>R :w<cr>:!ruby %<cr>
 nnoremap <leader>pry orequire 'pry'; binding.pry<esc>
 
 
@@ -200,11 +201,13 @@ endfunction
 " run test runner
 map <leader>t :call RunTestFile()<cr>
 map <leader>T :call RunNearestTest()<cr>
+
+
 "===============================================================================
-" END SPECS
+" END RUBY SPECS
 "===============================================================================
- 
- 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE (thanks Gary Bernhardt)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
