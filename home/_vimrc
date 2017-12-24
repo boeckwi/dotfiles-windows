@@ -1,4 +1,5 @@
 " try
+
 " gcip         comment in paragraph
 " ctrl+p       quick open file in project (fuzzy search)
 " <leader>t    run spec
@@ -46,19 +47,30 @@ let g:airline#extensions#tabline#enabled = 1
 "-------------------------------------------------------------------------------
 
 set encoding=utf-8
-set backup
+if has("win32")
+  set backup
+  set backupdir=%TMP%
+  set directory=%TMP%
+  colorscheme base16-ocean
+else
+  set backup
+  set backupdir=~/.tmp
+  set directory=~/.tmp
+  colorscheme slate
+endif
 set updatecount=0 " disable swap files; systems don't crash that often these days
-set dir=%TMP%
-set backupdir=%TMP%
-set directory=%TMP%
+set noswapfile
 set noundofile
 set number
 set relativenumber
 set ruler
-set guioptions -=m  "menu bar
-set guioptions -=T  "toolbar
-set guioptions -=r  "scrollbar
-set guioptions -=L  "left scrollbar if split"
+if has("gui_running")
+  set guifont=ubuntu\ mono:h12
+  set guioptions -=m  "menu bar
+  set guioptions -=T  "toolbar
+  set guioptions -=r  "scrollbar
+  set guioptions -=L  "left scrollbar if split"
+endif
 set incsearch
 set hlsearch
 set tabstop=2 " a tab is two spaces
@@ -82,8 +94,6 @@ set nocompatible " VI Kompatibilität brauchen wir nicht
 set list listchars=tab:»·,trail:· " Display extra whitespace
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Don't automatically continue comments after newline
 
-colorscheme base16-ocean
-set guifont=ubuntu\ mono:h12
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
 
 " C-V in insert mode
@@ -221,4 +231,8 @@ function! RenameFile()
   endif
 endfunction
 map <Leader>ren :call RenameFile()<cr>
+
+
+
+
 
