@@ -6,6 +6,7 @@
 " <leader>gw   push
 " <leader>ren  rename file
 
+set nocompatible " sollte an oberster Stelle stehen
 let mapleader = "\<space>"
 
 "===============================================================================
@@ -52,8 +53,8 @@ if has("win32")
   set directory=%TMP%
 
   " looks ugly in wsl:
-  colorscheme base16-ocean
-  set cuc cul " highlight cursor column and line
+  colorscheme solarized
+  set cul " highlight cursor line
   set colorcolumn=80
 else
   set backup
@@ -92,7 +93,6 @@ if !exists("g:syntax_on")
 endif
 set wildmenu " enable tab completion in command mode
 set wildmode=list:longest,full
-set nocompatible " VI Kompatibilität brauchen wir nicht
 set list listchars=tab:»·,trail:· " Display extra whitespace
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Don't automatically continue comments after newline
 set cmdheight=2 " domit nach shell command kein <enter> verlangt wird
