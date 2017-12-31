@@ -29,18 +29,19 @@ Plugin 'tpope/vim-endwise'      " automatisches end bei ruby
 Plugin 'gabrielelana/vim-markdown'
 filetype plugin indent on
 
-"Plugin: switch"
+"Plugin: switch
 nnoremap <leader>s :Switch<cr>
 
-"Plugin: nerdtree"
+"Plugin: nerdtree
 nnoremap <leader>f :NERDTree<CR>
 let NERDTreeQuitOnOpen=1
 
-"Plugin: markdown"
+"Plugin: markdown
 let g:markdown_enable_spell_checking = 0
 
 "Plugin: airline
 let g:airline#extensions#tabline#enabled = 1
+
 "-------------------------------------------------------------------------------
 " END VUNDLE PLUGINS
 "-------------------------------------------------------------------------------

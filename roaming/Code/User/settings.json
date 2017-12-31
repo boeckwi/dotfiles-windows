@@ -1,7 +1,4 @@
 {
-    "editor.tabSize": 2,
-    "window.zoomLevel": 0,
-    "editor.lineNumbers": "on",
     "vim.useCtrlKeys": true,
     "vim.handleKeys": {
         "<C-f>": false,
@@ -71,5 +68,27 @@
     },
     "window.menuBarVisibility": "default",
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Monokai"
+    "workbench.colorTheme": "Solarized Dark",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 0,
+    "editor.tabSize": 2,
+    "window.zoomLevel": -1,
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [80],
+    "ruby.lint": {
+        "rubocop": {
+            "lint": true
+        }
+    },
+    "telemetry.enableCrashReporter": false,
+    "search.exclude": {
+        "**/.git": true,
+        "**/tmp": true,
+        "**/log": true,
+    },
+    "workbench.activityBar.visible": true,
+    
+
+
+
 }
