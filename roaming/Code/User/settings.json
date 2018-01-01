@@ -72,7 +72,7 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.openEditors.visible": 0,
     "editor.tabSize": 2,
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
     "editor.lineNumbers": "relative",
     "editor.rulers": [80],
     "ruby.lint": {
@@ -87,8 +87,5 @@
         "**/log": true,
     },
     "workbench.activityBar.visible": true,
-    
-
-
-
+    "clojure.leinPath": "C:/ProgramData/chocolatey/bin/lein.bat"
 }
