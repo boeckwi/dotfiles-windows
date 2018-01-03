@@ -28,3 +28,6 @@ git clone https://github.com/VundleVim/Vundle.vim.git vimfiles/bundle/Vundle.vim
 cd %userprofile%
 mklink .spacemacs c:\dotfiles-windows\home\.spacemacs
 
+## Cmder
+cd c:\tools\cmder\vendor\conemu-maximus5
+mklink ConEmu.xml c:\dotfiles-windows\misc\ConEmu.xml
