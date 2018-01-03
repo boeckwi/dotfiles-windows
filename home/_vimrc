@@ -61,7 +61,7 @@ else
   set backup
   set backupdir=~/.tmp
   set directory=~/.tmp
-  colorscheme slate
+  colorscheme monokai
 endif
 set updatecount=0 " disable swap files; systems don't crash that often these days
 set noswapfile
